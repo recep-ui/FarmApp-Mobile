@@ -1,0 +1,50 @@
+services:
+  # Backend API Service
+  - type: web
+    name: farmapp-backend
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: DB_HOST
+        value: f617e7.h.filess.io
+      - key: DB_USER
+        value: farm_management_controldue
+      - key: DB_PASSWORD
+        sync: false
+        # FILES.IO şifrenizi buraya ekleyin
+      - key: DB_NAME
+        value: farm_management_controldue
+      - key: DB_PORT
+        value: 3307
+      - key: FRONTEND_URL
+        value: https://www.farmapp.site
+    healthCheckPath: /
+
+  # Frontend React Service
+  - type: web
+    name: farmapp-frontend
+    env: static
+    region: frankfurt
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://farmapp-backend-04yw.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
