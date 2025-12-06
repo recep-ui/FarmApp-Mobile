@@ -10,7 +10,7 @@ const Login = () => {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    
+
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -28,7 +28,7 @@ const Login = () => {
         setError('');
 
         const result = await login(formData.username, formData.password);
-        
+
         if (result.success) {
             navigate('/dashboard');
         } else if (result.requiresVerification) {
@@ -42,12 +42,19 @@ const Login = () => {
         } else {
             setError(result.message || 'Giriş başarısız');
         }
-        
+
         setLoading(false);
     };
 
     return (
         <div className="auth-container">
+            <div className="bg-animation">
+                <div className="sun"></div>
+                <div className="cloud cloud-1"></div>
+                <div className="cloud cloud-2"></div>
+                <div className="cloud cloud-3"></div>
+            </div>
+
             <div className="auth-card">
                 <div className="auth-header">
                     <h1>Farm Management System</h1>
@@ -83,8 +90,8 @@ const Login = () => {
                         />
                     </div>
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="btn-primary"
                         disabled={loading}
                     >
