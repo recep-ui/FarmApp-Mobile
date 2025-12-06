@@ -48,13 +48,6 @@ const Login = () => {
 
     return (
         <div className="auth-container">
-            <div className="bg-animation">
-                <div className="sun"></div>
-                <div className="cloud cloud-1"></div>
-                <div className="cloud cloud-2"></div>
-                <div className="cloud cloud-3"></div>
-            </div>
-
             <div className="auth-card">
                 <div className="auth-header">
                     <h1>Farm Management System</h1>

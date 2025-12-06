@@ -1,0 +1,157 @@
+/* Global Background Animation Styles */
+.bg-animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Behind everything */
+    background: linear-gradient(-45deg, #2E7D32, #43A047, #66BB6A, #81C784);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Sun Animation */
+.sun {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+    background: #FFEB3B;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #FFEB3B, 0 0 80px #FFF176;
+    animation: pulse 4s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Cloud Animations */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    animation: float linear infinite;
+    z-index: 0;
+}
+
+.cloud::after,
+.cloud::before {
+    content: '';
+    position: absolute;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 120px;
+    height: 60px;
+    top: 15%;
+    left: -120px;
+    animation-duration: 45s;
+    /* Slowed down for global background */
+}
+
+.cloud-1::after {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 20px;
+}
+
+.cloud-1::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 50px;
+}
+
+.cloud-2 {
+    width: 100px;
+    height: 50px;
+    top: 35%;
+    left: -100px;
+    animation-duration: 65s;
+    animation-delay: 5s;
+    opacity: 0.6;
+}
+
+.cloud-2::after {
+    width: 30px;
+    height: 30px;
+    top: -15px;
+    left: 15px;
+}
+
+.cloud-2::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 40px;
+}
+
+.cloud-3 {
+    width: 140px;
+    height: 70px;
+    top: 10%;
+    left: -140px;
+    animation-duration: 85s;
+    animation-delay: 2s;
+    opacity: 0.4;
+}
+
+.cloud-3::after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 25px;
+}
+
+.cloud-3::before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 60px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 40px #FFEB3B;
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 60px #FFEB3B, 0 0 100px #FFF176;
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px #FFEB3B;
+    }
+}
+
+@keyframes float {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(100vw + 200px));
+    }
+}
