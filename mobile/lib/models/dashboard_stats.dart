@@ -78,11 +78,15 @@ class TaskStats {
 class ProductionStat {
   final String productType;
   final double totalQuantity;
+  final double avgQuantity;
+  final int recordCount;
   final String unit;
 
   ProductionStat({
     required this.productType,
     required this.totalQuantity,
+    required this.avgQuantity,
+    required this.recordCount,
     required this.unit,
   });
 
@@ -90,6 +94,8 @@ class ProductionStat {
     return ProductionStat(
       productType: json['product_type'] ?? '',
       totalQuantity: double.tryParse(json['total_quantity'].toString()) ?? 0.0,
+      avgQuantity: double.tryParse(json['avg_quantity'].toString()) ?? 0.0,
+      recordCount: int.tryParse(json['record_count'].toString()) ?? 0,
       unit: json['unit'] ?? '',
     );
   }

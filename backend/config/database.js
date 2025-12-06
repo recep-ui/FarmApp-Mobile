@@ -17,7 +17,7 @@ if (process.env.DATABASE_URL) {
             database: dbUrl.pathname.slice(1),
             port: parseInt(dbUrl.port) || 3306,
             waitForConnections: true,
-            connectionLimit: 10,
+            connectionLimit: 3, // Reduced to prevent 'max_user_connections' error (limit is usually 5 on free tier)
             queueLimit: 0,
             connectTimeout: 60000,
             ssl: process.env.DB_SSL === 'true' || process.env.NODE_ENV === 'production' ? {

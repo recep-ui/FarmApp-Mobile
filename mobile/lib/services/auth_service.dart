@@ -15,7 +15,7 @@ class AuthService with ChangeNotifier {
   bool get isLoading => _isLoading;
   bool get isAuthenticated => _token != null;
 
-  Future<bool> login(String username, String password) async {
+  Future<Map<String, dynamic>> login(String username, String password) async {
     _isLoading = true;
     notifyListeners();
 
@@ -39,17 +39,21 @@ class AuthService with ChangeNotifier {
 
         _isLoading = false;
         notifyListeners();
-        return true;
+        return {'success': true};
       } else {
         _isLoading = false;
         notifyListeners();
-        return false;
+        return {
+          'success': false,
+          'message':
+              data['message'] ?? 'Login failed. Please check your credentials.',
+        };
       }
     } catch (e) {
       print('Login error: $e');
       _isLoading = false;
       notifyListeners();
-      return false;
+      return {'success': false, 'message': 'Connection error: $e'};
     }
   }
 

@@ -10,6 +10,7 @@ import '../screens/health/health_list_screen.dart';
 import '../screens/employees/employee_list_screen.dart';
 import '../screens/feeding/feeding_list_screen.dart';
 import '../screens/users/user_list_screen.dart';
+import '../screens/admin/admin_dashboard_screen.dart';
 import '../constants/app_colors.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -134,7 +135,32 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
-          if (user?.role == 'admin')
+          if (user?.role == 'admin') ...[
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+              child: Text(
+                'Admin Panel',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.analytics),
+              title: const Text('Admin Dashboard'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AdminDashboardScreen(),
+                  ),
+                );
+              },
+            ),
             ListTile(
               leading: const Icon(Icons.manage_accounts),
               title: const Text('Users'),
@@ -148,6 +174,7 @@ class AppDrawer extends StatelessWidget {
                 );
               },
             ),
+          ],
           const Divider(),
           ListTile(
             leading: const Icon(Icons.logout),
